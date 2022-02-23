@@ -1,30 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-/* Added Routes & Route dependencies*/
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-/* added importes*/
-import MainNavigation from './components/layout/MainNavigation';
-import Footer from './components/layout/Footer';
-import HomePage from './pages/Home';
-import AllRecipesPage from '../src/pages/AllRecipes';
-
 import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      {/* Added Navigation */}
-      <MainNavigation />
-      <Routes>
-        {/* Added two new routes */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/all-recipes" element={<AllRecipesPage />} />
-      </Routes>
-      {/* Added Footer */}
-      <Footer />
+      <App />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Recipes() {
   let navigate = useNavigate();
@@ -9,7 +9,7 @@ function Recipes() {
         <h1>Here are some recipes</h1>
         <button
           className="bg-green-500 rounded p-2"
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
         >
           back home
         </button>

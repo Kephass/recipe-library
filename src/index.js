@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import App from './App';
+import '@fontsource/barlow/400.css';
 import theme from './theme';
 
 ReactDOM.render(

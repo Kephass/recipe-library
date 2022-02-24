@@ -1,9 +1,11 @@
 import React from "react";
+import { SmileOutlined } from "@ant-design/icons";
 
 function Landing() {
   return (
-    <div className="container mx-auto">
-      <h1 className="text-center mb-5">This is the landing page</h1>
+    <div className="">
+      <h1 className="">This is the landing page</h1>
+      <SmileOutlined />
     </div>
   );
 }

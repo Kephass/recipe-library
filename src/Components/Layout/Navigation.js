@@ -18,7 +18,10 @@ function Navigation() {
 				bottom: '0',
 			}}
 			bg='#2c2c2c'
-			h='50px'
+			h='5rem'
+			fontSize='1.5rem'
+			borderTopRightRadius='2rem'
+			borderTopLeftRadius='2rem'
 			alignItems='center'
 			justifyContent='space-evenly'
 		>

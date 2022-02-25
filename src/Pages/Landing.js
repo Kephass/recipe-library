@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Heading, Text } from '@chakra-ui/react';
 import RecommendedMeal from '../Components/RecommendedMeal';
+import MealCategories from '../Components/MealCategories';
 
 function Landing() {
   return (
@@ -8,6 +9,7 @@ function Landing() {
       <Heading as='h1'>Hi, Arnold</Heading>
       <Text>Ready to cook for dinner?</Text>
       <RecommendedMeal />
+      <MealCategories />
     </Container>
   );
 }

@@ -10,12 +10,7 @@ import {
 
 function Navigation() {
 	return (
-		<Flex
-			position='fixed'
-			h='50px'
-			alignItems='center'
-			justifyContent='space-evenly'
-		>
+		<Flex h='50px' alignItems='center' justifyContent='space-evenly'>
 			<Link to='/'>
 				<HomeOutlined />
 			</Link>

@@ -6,9 +6,19 @@ const theme = extendTheme({
       'html, body': {
         color: 'white',
         lineHeight: 'tall',
+        bg: '#252836',
       },
       a: {
         color: 'yellow.500',
+      },
+      h1: {
+        fontSize: ['30px !important', '42px !important'],
+      },
+      h2: {
+        fontSize: ['26px !important', '38px !important'],
+      },
+      h3: {
+        fontSize: ['16px !important', '28px !important'],
       },
     },
   },

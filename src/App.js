@@ -12,22 +12,24 @@ import {
 } from './Pages';
 
 function App() {
-  return (
-    <Box maxW='1200px' mx='auto'>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/recipes' element={<Recipes />} />
-          <Route path='/categories' element={<Categories />} />
-          <Route path='/recipes/:recipeId' element={<Recipe />} />
-          <Route path='/test' element={<Test />} />
-          <Route path='*' element={<ErrorPage />} />
-        </Routes>
-        <Navigation />
-      </Router>
-    </Box>
-  );
+
+	return (
+		<Box maxW='1200px' bg='#28282B' h='100%' mx='auto'>
+			<Router>
+				<Routes>
+					<Route path='/' element={<Landing />} />
+					<Route path='/search' element={<Search />} />
+					<Route path='/recipes' element={<Recipes />} />
+					<Route path='/recipes/:recipeId' element={<Recipe />} />
+					<Route path='/test' element={<Test />} />
+					<Route path='*' element={<ErrorPage />} />
+				</Routes>
+				<Navigation />
+			</Router>
+		</Box>
+	);
+
+
 }
 
 export default App;

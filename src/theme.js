@@ -30,6 +30,8 @@ const theme = extendTheme({
     testYellow: '#ffc20d', // Active tabs, clock / star / flame icons, recommended meal font
     primary: '#212121', // Background
     secondary: '#272727', // Recipe cards, Ingredient Cards
+    navInactive: '#828282',
+	navActive: 'yellow.500',
   },
 });
 

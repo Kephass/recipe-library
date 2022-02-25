@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Flex } from '@chakra-ui/react';
 import {
 	HomeOutlined,
@@ -7,22 +7,65 @@ import {
 	FileSearchOutlined,
 	CalendarOutlined,
 } from '@ant-design/icons';
+import { motion } from 'framer-motion';
 
 function Navigation() {
 	return (
-		<Flex h='50px' alignItems='center' justifyContent='space-evenly'>
-			<Link to='/'>
-				<HomeOutlined />
-			</Link>
-			<Link to='/search'>
-				<SearchOutlined />
-			</Link>
-			<Link to='/recipes'>
-				<FileSearchOutlined />
-			</Link>
-			<Link to='/test'>
-				<CalendarOutlined />
-			</Link>
+		<Flex
+			sx={{
+				position: '-webkit-sticky',
+				/* Safari */ position: 'sticky',
+				bottom: '0',
+			}}
+			bg='#2c2c2c'
+			h='50px'
+			alignItems='center'
+			justifyContent='space-evenly'
+		>
+			<motion.div
+				whileHover={{
+					scale: 1.3,
+					transition: { duration: 0.3 },
+				}}
+				whileTap={{ scale: 0.9 }}
+			>
+				<NavLink to='/'>
+					<HomeOutlined />
+				</NavLink>
+			</motion.div>
+			<motion.div
+				whileHover={{
+					scale: 1.3,
+					transition: { duration: 0.3 },
+				}}
+				whileTap={{ scale: 0.9 }}
+			>
+				<NavLink to='/search'>
+					<SearchOutlined />
+				</NavLink>
+			</motion.div>
+			<motion.div
+				whileHover={{
+					scale: 1.3,
+					transition: { duration: 0.3 },
+				}}
+				whileTap={{ scale: 0.9 }}
+			>
+				<NavLink to='/recipes'>
+					<FileSearchOutlined />
+				</NavLink>
+			</motion.div>
+			<motion.div
+				whileHover={{
+					scale: 1.3,
+					transition: { duration: 0.3 },
+				}}
+				whileTap={{ scale: 0.9 }}
+			>
+				<NavLink to='/test'>
+					<CalendarOutlined />
+				</NavLink>
+			</motion.div>
 		</Flex>
 	);
 }

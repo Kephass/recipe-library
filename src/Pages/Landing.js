@@ -1,13 +1,15 @@
 import React from 'react';
-import { SmileOutlined } from '@ant-design/icons';
+import { Container, Heading, Text } from '@chakra-ui/react';
+import RecommendedMeal from '../Components/RecommendedMeal';
 
 function Landing() {
-	return (
-		<div>
-			<h1>This is the landing page</h1>
-			<SmileOutlined />
-		</div>
-	);
+  return (
+    <Container maxW='container.xl' minH='93vh'>
+      <Heading as='h1'>Hi, Arnold</Heading>
+      <Text>Ready to cook for dinner?</Text>
+      <RecommendedMeal />
+    </Container>
+  );
 }
 
 export default Landing;

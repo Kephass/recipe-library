@@ -6,7 +6,7 @@ const theme = extendTheme({
       'html, body': {
         color: 'white',
         lineHeight: 'tall',
-        bg: '#252836',
+        bg: 'primary',
       },
       a: {
         color: 'yellow.500',
@@ -31,7 +31,8 @@ const theme = extendTheme({
     primary: '#212121', // Background
     secondary: '#272727', // Recipe cards, Ingredient Cards
     navInactive: '#828282',
-	navActive: 'yellow.500',
+    navActive: 'yellow.500',
+    textFaint: '#8e8e8e', // Maybe same as navActive? This is the color my eyedrop got from "Ready to cook dinner?"
   },
 });
 

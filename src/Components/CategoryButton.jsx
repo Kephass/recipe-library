@@ -5,13 +5,13 @@ function CategoryButton({ category, isSelected, onClickHandler }) {
   const { id, text, icon } = category;
   return (
     <Button
-      bg={isSelected ? 'testYellow' : 'primary'}
-      color={isSelected ? 'primary' : 'white'}
+      bg={isSelected ? 'testYellow' : 'secondary'}
+      color={isSelected ? 'secondary' : 'white'}
       letterSpacing='1px'
       borderRadius='xl'
       fontSize='12px'
       _hover={{
-        color: 'primary',
+        color: 'secondary',
         bg: 'testYellow',
       }}
       _focus={{

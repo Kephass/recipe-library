@@ -7,10 +7,10 @@ import '@fontsource/barlow/400.css';
 import theme from './theme';
 
 ReactDOM.render(
-	<ChakraProvider theme={theme}>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
-	</ChakraProvider>,
-	document.getElementById('root')
+  <ChakraProvider theme={theme}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ChakraProvider>,
+  document.getElementById('root')
 );

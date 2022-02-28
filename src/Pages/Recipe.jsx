@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { getRecipeById } from '../api/recipeSearch';
 
-function Recipe() {
+function ScreenRecipe() {
   const { recipeId } = useParams();
   const [recipe, setRecipe] = useState({});
 
@@ -67,4 +67,4 @@ function Recipe() {
   );
 }
 
-export default Recipe;
+export default ScreenRecipe;

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ClockCircleOutlined, FireOutlined } from '@ant-design/icons';
-import { getRandomRecipe, getRecipe } from '../api/recipeSearch';
-import * as timeHelper from '../helpers/time';
-import * as mockDataHelper from '../helpers/mockData';
-import * as mealHelper from '../helpers/meal';
+import { getRandomRecipe, getRecipe } from '../../../api/recipeSearch';
+import * as timeHelper from '../../../utils/time';
+import * as mockDataHelper from '../../../utils/mockData';
+import * as mealHelper from '../../../utils/meal';
 
-function RecommendedMeal() {
+export function MealRecommendation() {
   const [recipe, setRecipe] = useState(mockDataHelper.meal);
 
   const [isFetchingRecipe, setIsFetchingRecipe] = useState(false);
@@ -26,8 +26,10 @@ function RecommendedMeal() {
     if (timeHelper.isLunchTime()) params.tags = 'main course';
     else if (timeHelper.isBreakfastTime()) params.tags = 'dessert';
 
-    const fetchedRecipes = await getRandomRecipe(params);
-    setRecipe(fetchedRecipes.recipes[0]);
+    // const fetchedRecipes = await getRandomRecipe(params);
+    let fetchedRecipes = null;
+    if (fetchedRecipes && fetchedRecipes.recipes)
+      setRecipe(fetchedRecipes.recipes[0]);
     setIsFetchingRecipe(false);
   };
 
@@ -85,4 +87,4 @@ function RecommendedMeal() {
   );
 }
 
-export default RecommendedMeal;
+export default MealRecommendation;

@@ -20,7 +20,7 @@ import {
 import { HeartOutlined, HeartFilled, HeartTwoTone } from '@ant-design/icons';
 import { Reorder } from 'framer-motion';
 
-function Test() {
+function ScreenTest() {
   const [emojis, setEmojis] = useState([
     '🎈 Balloon',
     '🎁 Gift',
@@ -124,4 +124,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default ScreenTest;

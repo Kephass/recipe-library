@@ -1,8 +1,14 @@
 import React from 'react';
 import { Button, Text } from '@chakra-ui/react';
+import { CATEGORIES } from '../../../../utils/mockData';
 
-function CategoryButton({ category, isSelected, onClickHandler }) {
+function CategoryButton({
+  category = CATEGORIES[2],
+  isSelected = false,
+  onClickHandler = null,
+}) {
   const { id, text, icon } = category;
+
   return (
     <Button
       bg={isSelected ? 'testYellow' : 'secondary'}

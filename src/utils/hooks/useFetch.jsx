@@ -1,26 +1,21 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
-function useFetch(url) {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+/*Idea is that this hook accept diffrent hepler methods to execute. Also probably we need to 
+memoize this hook? I had some problems with to many request with this approach. Maybe you
+have some better idea how to handle this instead of passing method? Maybe some switch 
+statement here, but problem is when you need to pass helper fn with arguments like recipe_id */
+
+export function useFetch(method) {
+  const [data, setData] = useState();
+  const [error, setError] = useState();
 
   useEffect(() => {
-    (async function () {
-      try {
-        setLoading(true);
-        const response = await axios.get(url);
-        setData(response.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [url]);
+    method()
+      .then((data) => setData(data))
+      .catch((error) => setError(error));
+  }, [method]);
 
-  return { data, error, loading };
+  return [data, !error && !data, error];
 }
 
 export default useFetch;

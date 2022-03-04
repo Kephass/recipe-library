@@ -1,43 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ClockCircleOutlined, FireOutlined } from '@ant-design/icons';
-import { getRandomRecipe, getRecipe } from '../../../api/recipeSearch';
-import * as timeHelper from '../../../utils/time';
-import * as mockDataHelper from '../../../utils/mockData';
-import * as mealHelper from '../../../utils/meal';
+import currentMealTime from '../../../utils/currentMealTime';
+import useFetch from '../../../utils/hooks/useFetch';
+import { recipeService } from '../../../api/recipes.service';
+import { meal as DUMMY_RECIPE } from '../../../utils/mockData';
 
 export function MealRecommendation() {
-  const [recipe, setRecipe] = useState(mockDataHelper.meal);
+  /* Implementation of useFetch hook. Still grasping how to implent a cleaner way to pass
+  helper fn in this fetch custom hook and how to pass helpers that accept arguments like ex: recipe_id. 
+  I still don't if this is good approach or not. Please tell me what you think? */
+  const [data, loading, error] = useFetch(recipeService.getRandom);
+  const { recommendationMessage } = currentMealTime();
+  // If there is no recipe from API load local dummy recipe
+  const recipe = data?.recipes[0] || DUMMY_RECIPE;
 
-  const [isFetchingRecipe, setIsFetchingRecipe] = useState(false);
+  if (error) {
+    //This need to go in some global Error handler.
+    console.log(error);
+    return <p>Something went wrong!</p>;
+  }
 
-  // When this component mounts, fetch a random Meal based on user's time
-  useEffect(() => {
-    // Comment the fetch call so we don't waste our daily limit!
-    fetchRecipe();
-  }, []);
-
-  const fetchRecipe = async () => {
-    setIsFetchingRecipe(true);
-
-    const params = { number: 1 };
-    if (timeHelper.isBreakfastTime()) params.tags = 'breakfast';
-    if (timeHelper.isLunchTime()) params.tags = 'main course';
-    else if (timeHelper.isBreakfastTime()) params.tags = 'dessert';
-
-    // const fetchedRecipes = await getRandomRecipe(params);
-    let fetchedRecipes = null;
-    if (fetchedRecipes && fetchedRecipes.recipes)
-      setRecipe(fetchedRecipes.recipes[0]);
-    setIsFetchingRecipe(false);
-  };
-
-  // Conditionally returns JSX for a loading message (animation ideally) or a Recommended Meal
-  const renderedRecipe = () => {
-    if (!recipe) return <div>Fetching meal recommendation...</div>;
-
-    return (
+  //This should be returning UI component with some spiner.
+  if (loading) return <p>Loading...</p>;
+  return (
+    <Container maxW='container.xl' centerContent>
       <Link to={`/recipes/${recipe.id}`}>
         <Flex
           background={`linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35)), url('${recipe.image}')`}
@@ -52,7 +40,7 @@ export function MealRecommendation() {
           justify='space-around'
         >
           <Text color='textFaint' fontWeight='bold'>
-            {mealHelper.recommendationMessage()}
+            {recommendationMessage}
           </Text>
           <Text fontSize={24} color='testYellow'>
             {recipe.title}
@@ -77,12 +65,6 @@ export function MealRecommendation() {
           </Flex>
         </Flex>
       </Link>
-    );
-  };
-
-  return (
-    <Container maxW='container.xl' centerContent>
-      {renderedRecipe()}
     </Container>
   );
 }

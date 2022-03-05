@@ -11,16 +11,27 @@ export const recipeService = {
   getById,
   getByMealType,
   create,
+  getByParams,
 };
+
+function getByParams(params) {
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`;
+  url += '?' + new URLSearchParams(params).toString();
+
+  console.log('PARAMS', params);
+  console.log('URL', url);
+}
 
 function getRandom() {
   return fetchWrapper.get(`${BASE_API_URL}random?number=1&apiKey=${API_KEY}`);
 }
 
 function getById(id) {
-  return fetchWrapper.get(
-    `${BASE_API_URL}${id}/information?includeNutrition=false&apiKey=${API_KEY}`
-  );
+  // return fetchWrapper.get(
+  //   `${BASE_API_URL}${id}/information?includeNutrition=false&apiKey=${API_KEY}`
+  // );
+
+  return `${BASE_API_URL}${id}/information?includeNutrition=false&apiKey=${API_KEY}`;
 }
 
 function getByMealType(mealType) {

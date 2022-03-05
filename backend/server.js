@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 const { errorHandler } = require('./middleware/errorMiddleware');
@@ -6,6 +7,9 @@ const userRouter = require('./routes/userRoutes');
 const recipeRouter = require('./routes/recipeRoutes');
 
 const app = express();
+
+// Prevent "blocked by CORS policy" error when calling our API endpoints from frontend
+app.use(cors());
 
 // Required to parse the body of a request
 app.use(express.json());

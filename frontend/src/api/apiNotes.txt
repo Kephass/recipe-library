@@ -45,3 +45,21 @@ Southern
 Spanish
 Thai
 Vietnamese
+
+Intolerances
+Every API endpoint asking for a intolerances parameter can be fed with any of these intolerances.
+
+Dairy
+Egg
+Gluten
+Grain
+Peanut
+Seafood
+Sesame
+Shellfish
+Soy
+Sulfite
+Tree Nut
+Wheat
+
+

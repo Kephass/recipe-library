@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserProfile } from '../Components/User';
-import { users } from '../utils/mockData';
+import axios from 'axios';
 
 function ScreenUserProfile() {
   const { userId } = useParams();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function getUserFromBackend() {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/users/${userId}`
+        );
+        console.log(response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.log('Error fetching user: ', error);
+      }
+    }
+
+    getUserFromBackend();
+  }, []);
 
   return (
     <div>
       User Profile Screen for User ID {userId}
-      <UserProfile user={users[userId - 1]} />
+      {user && <UserProfile user={user} />}
     </div>
   );
 }

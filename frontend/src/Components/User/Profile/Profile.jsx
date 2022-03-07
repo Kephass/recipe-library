@@ -4,8 +4,13 @@ function UserProfile({ user }) {
   const renderedFavorites = user.favoriteMeals.map((favorite) => {
     return (
       <div key={favorite.id}>
+        TESTING
         <div>{favorite.title}</div>
-        <img src={favorite.image} style={{ width: '100px', height: '100px' }} />
+        <img
+          src={favorite.image}
+          alt={favorite.title}
+          style={{ width: '100px', height: '100px' }}
+        />
       </div>
     );
   });
@@ -13,8 +18,8 @@ function UserProfile({ user }) {
   return (
     <div>
       <div>Name: {user.name}</div>
-      <img src={user.image} />
-      <div>Favorite Meals:</div>
+      <img src={user.image} alt={user.name} />
+      <div>Favorite Meals {user.favoriteMeals.length}:</div>
       {renderedFavorites}
     </div>
   );

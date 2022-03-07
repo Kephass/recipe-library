@@ -1,11 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
+const connectDatabase = require('./config/database');
 const PORT = process.env.PORT || 5000;
 const { errorHandler } = require('./middleware/errorMiddleware');
 const userRouter = require('./routes/userRoutes');
 const recipeRouter = require('./routes/recipeRoutes');
 
+// Connect our MongoDB database
+connectDatabase();
+
+// Create am instance of our Express application
 const app = express();
 
 // Prevent "blocked by CORS policy" error when calling our API endpoints from frontend

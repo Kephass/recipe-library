@@ -5,10 +5,11 @@ export const fetchWrapper = {
   delete: _delete,
 };
 
-function get(url) {
+function get(url, params) {
   const requestOptions = {
     method: 'GET',
   };
+  // url += '?' + new URLSearchParams(params).toString();
   return fetch(url, requestOptions).then(handleResponse);
 }
 

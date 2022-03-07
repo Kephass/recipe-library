@@ -11,10 +11,16 @@ export function MealRecommendation() {
   /* Implementation of useFetch hook. Still grasping how to implent a cleaner way to pass
   helper fn in this fetch custom hook and how to pass helpers that accept arguments like ex: recipe_id. 
   I still don't if this is good approach or not. Please tell me what you think? */
-  const [data, loading, error] = useFetch(recipeService.getRandom);
+  // const [data, loading, error] = useFetch(recipeService.getById(33));
+  const [data, loading, error] = useFetch(
+    recipeService.getByParams({ type: 'breakfast' })
+  );
   const { recommendationMessage } = currentMealTime();
   // If there is no recipe from API load local dummy recipe
-  const recipe = data?.recipes[0] || DUMMY_RECIPE;
+  // const recipe = data?.recipes[0] || DUMMY_RECIPE;
+  const recipe = data || DUMMY_RECIPE;
+
+  console.log('DATA', data);
 
   if (error) {
     //This need to go in some global Error handler.

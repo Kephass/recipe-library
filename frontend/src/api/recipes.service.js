@@ -7,23 +7,32 @@ const BASE_API_URL = `https://api.spoonacular.com/recipes/`;
 //I' made this service so i don't mess with code what matt did, if this is not a good approach
 
 export const recipeService = {
+  getFromServer,
   getRandom,
   getById,
   getByMealType,
   create,
-  getByParams,
+  getRecipesByParams
 };
 
-function getByParams(params) {
-  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`;
-  url += '?' + new URLSearchParams(params).toString();
-
-  console.log('PARAMS', params);
-  console.log('URL', url);
+// Get ALL recipes from our own server's database!
+function getFromServer() {
+  return `http://localhost:5000/api/recipes`
 }
 
-function getRandom() {
-  return fetchWrapper.get(`${BASE_API_URL}random?number=1&apiKey=${API_KEY}`);
+
+function getRecipesByParams(params) {
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`;
+
+  // Convert the params object to its URL equivalent -- append this to base URL.
+  url += '&' + new URLSearchParams(params).toString();
+
+  return url;
+}
+
+// Get a random recipe
+function getRandom(count = 1) {
+  return fetchWrapper.get(`${BASE_API_URL}random?number=${count}&apiKey=${API_KEY}`);
 }
 
 function getById(id) {

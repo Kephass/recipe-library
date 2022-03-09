@@ -10,7 +10,7 @@ const MEALTIME = {
     recommendationMessage: 'Menu For Lunch',
     mealType: 'main course',
   },
-  desert: {
+  dessert: {
     greetingMessage: 'Indulge in some dessert!',
     recommendationMessage: 'Menu For Dessert',
     mealType: 'dessert',
@@ -25,7 +25,7 @@ const MEALTIME = {
 function currentMealTime() {
   if (CURRENT_HOUR > 4 && CURRENT_HOUR < 12) return MEALTIME.breakfast;
   if (CURRENT_HOUR >= 12 && CURRENT_HOUR < 16) return MEALTIME.launch;
-  if (CURRENT_HOUR >= 16) return MEALTIME.desert;
+  if (CURRENT_HOUR >= 16) return MEALTIME.dessert;
   return MEALTIME.default;
 }
 

@@ -50,7 +50,7 @@ function ScreenRecipe() {
       <HStack>
         <Box>
           <ClockCircleFilled style={{ color: '#ffc20d' }} />
-          <Text>{recipe.readyInMinutes} MInute</Text>
+          <Text>{recipe.readyInMinutes} Minute</Text>
           <Text>Cooking</Text>
         </Box>
         <Box>

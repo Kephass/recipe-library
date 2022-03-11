@@ -14,21 +14,21 @@ const recipeSchema = mongoose.Schema(
       required: false,
     },
     // How long (in minutes) does this recipe take to prepare?
-    timeToPrepare: {
+    readyInMinutes: {
       type: Number,
     },
     // How difficult (0 to 5) is it to complete the recipe?
     difficulty: {
-        type: Number,
-        min: 0,
-        max: 5,
+      type: Number,
+      min: 0,
+      max: 5,
     },
     // The average rating of the recipe (0 to 5)
     rating: {
-        type: Number,
-        min: 0,
-        max: 5,
-    }
+      type: Number,
+      min: 0,
+      max: 5,
+    },
   },
   {
     timestamps: true,

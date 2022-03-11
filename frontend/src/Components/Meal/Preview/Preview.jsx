@@ -33,6 +33,7 @@ function MealPreview({ recipe }) {
         transition={'transform 0.5s ease-in-out'}
       >
         <Image
+          objectFit="cover"
           src={recipe.image}
           alt={recipe.title}
           boxSize="120px"
@@ -40,9 +41,11 @@ function MealPreview({ recipe }) {
           mx="auto"
           mt="-60px"
         />
-        <Text color="white" fontWeight="bold" textAlign="center">
-          {recipe.title}
-        </Text>
+        <Box width="90%" isTruncated text-overflow="ellipsis">
+          <Text color="white" fontWeight="bold" textAlign="center" isTruncated>
+            {recipe.title}
+          </Text>
+        </Box>
         <Box color="testYellow">
           {/* Calculate how many Star icons we need, based on the difficulty */}
           {Array.apply(null, { length: Math.round(recipe.difficulty) }).map(

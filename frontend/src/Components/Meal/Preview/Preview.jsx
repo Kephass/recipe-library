@@ -13,8 +13,9 @@ const mealDifficultyToString = (difficulty) => {
 };
 
 function MealPreview({ recipe }) {
+  const id = recipe._id ? recipe._id : recipe.id;
   return (
-    <ReactLink to={`/recipes/${recipe.id}`}>
+    <ReactLink to={`/recipes/${id}`}>
       <Stack
         key={recipe._id}
         spacing={1}

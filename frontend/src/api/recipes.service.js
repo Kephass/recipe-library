@@ -8,18 +8,23 @@ const BASE_API_URL = `https://api.spoonacular.com/recipes/`;
 
 export const recipeService = {
   getFromServer,
+  getByIdFromServer,
   getRandom,
   getById,
   getByMealType,
   create,
-  getRecipesByParams
+  getRecipesByParams,
 };
 
 // Get ALL recipes from our own server's database!
 function getFromServer() {
-  return `http://localhost:5000/api/recipes`
+  return `http://localhost:5000/api/recipes`;
 }
 
+// Get a recipe by its ID from our own server's database!
+function getByIdFromServer(id) {
+  return `http://localhost:5000/api/recipes/${id}`;
+}
 
 function getRecipesByParams(params) {
   let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}`;
@@ -32,7 +37,9 @@ function getRecipesByParams(params) {
 
 // Get a random recipe
 function getRandom(count = 1) {
-  return fetchWrapper.get(`${BASE_API_URL}random?number=${count}&apiKey=${API_KEY}`);
+  return fetchWrapper.get(
+    `${BASE_API_URL}random?number=${count}&apiKey=${API_KEY}`
+  );
 }
 
 function getById(id) {

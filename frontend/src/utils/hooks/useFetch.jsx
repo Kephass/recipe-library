@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchWrapper } from '../fetchWrapper';
 
 /*Idea is that this hook accept diffrent hepler methods to execute. Also probably we need to 
@@ -11,10 +11,17 @@ export function useFetch(url) {
   const [error, setError] = useState();
 
   useEffect(() => {
-    fetchWrapper
-      .get(`${url}`)
-      .then((data) => setData(data))
-      .catch((error) => setError(error));
+    if (!url) return;
+
+    // TODO: Remove this timeout! Just simulating a delay to test loading-based features
+    setTimeout(() => {
+      fetchWrapper
+        .get(`${url}`)
+        .then((data) => {
+          setData(data);
+        })
+        .catch((error) => setError(error));
+    }, 2000);
   }, [url]);
 
   return [data, !error && !data, error];

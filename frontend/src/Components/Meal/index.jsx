@@ -1,5 +1,6 @@
-import MealPreview from './Preview';
-import MealRecommendation from './Recommendation';
 import MealCategories from './Category';
+import MealPreview from './Preview';
+import MealPreviewSkeleton from './PreviewSkeleton';
+import MealRecommendation from './Recommendation';
 
-export { MealCategories, MealPreview, MealRecommendation };
+export { MealCategories, MealPreview, MealPreviewSkeleton, MealRecommendation };

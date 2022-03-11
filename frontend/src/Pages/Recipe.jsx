@@ -20,20 +20,11 @@ import useFetch from '../utils/hooks/useFetch';
 
 function ScreenRecipe() {
   const { recipeId } = useParams();
-  const [recipe, loading, error] = useFetch(recipeService.getById(recipeId));
-
-  // const [recipe, setRecipe] = useState();
+  const [recipe, isLoading, error] = useFetch(
+    recipeService.getByIdFromServer(recipeId)
+  );
+  // useFetch(recipeService.getById(recipeId));
   const [currentView, setCurrentView] = useState('ingredients');
-
-  // const getRecipe = async () => {
-  //   const fetchedRecipe = await getRecipeById(recipeId);
-  //   setRecipe(fetchedRecipe);
-  // };
-
-  useEffect(() => {
-    // getRecipe();
-    console.log('Recipe', recipe);
-  }, [recipeId]);
 
   if (!recipe) return <div>Fetching recipe...</div>;
 
@@ -45,27 +36,29 @@ function ScreenRecipe() {
       centerContent
       bgColor="primary"
     >
-      <Image src={recipe.image} />
-      <Heading as="h1">{recipe.title}</Heading>
-      <HStack>
-        <Box>
+      <Image src={recipe.image} maxH="250px" />
+      <Heading as="h1" m="4rem 1rem 3rem 1rem">
+        {recipe.title}
+      </Heading>
+      <HStack gap="5rem" mb="3rem">
+        <Stack justifyContent="center" alignItems="center">
           <ClockCircleFilled style={{ color: '#ffc20d' }} />
           <Text>{recipe.readyInMinutes} Minute</Text>
           <Text>Cooking</Text>
-        </Box>
-        <Box>
+        </Stack>
+        <Stack justifyContent="center" alignItems="center">
           <StarFilled style={{ color: '#ffc20d' }} />
           <Text>4.08</Text>
           <Text>Rating</Text>
-        </Box>
-        <Box>
+        </Stack>
+        <Stack justifyContent="center" alignItems="center">
           <FireFilled style={{ color: '#ffc20d' }} />
           <Text>Easy level</Text>
           <Text>Difficulty</Text>
-        </Box>
+        </Stack>
       </HStack>
 
-      <ButtonGroup colorScheme="yellow" spacing="6">
+      <ButtonGroup colorScheme="yellow" spacing="3rem" mb="2rem">
         <Button
           isActive={currentView === 'instructions'}
           onClick={() => setCurrentView('instructions')}
@@ -90,11 +83,11 @@ function ScreenRecipe() {
       )}
 
       {currentView === 'ingredients' && (
-        <ul>
+        <Box>
           {recipe.extendedIngredients.map((ingredient) => (
-            <li key={ingredient.id}>{ingredient.original}</li>
+            <Text key={ingredient.id}>{ingredient.original}</Text>
           ))}
-        </ul>
+        </Box>
       )}
     </Container>
   );

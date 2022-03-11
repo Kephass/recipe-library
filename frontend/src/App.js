@@ -19,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/search/:query' element={<Search />} />
           <Route path='/recipes' element={<Recipes />} />
           <Route path='/recipes/:recipeId' element={<Recipe />} />
           <Route path='/users/:userId' element={<UserProfile />} />

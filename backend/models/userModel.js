@@ -13,8 +13,8 @@ const userSchema = mongoose.Schema(
     },
     // TODO: This will be an array of ObjectID references (they will refer to Recipe models we will soon define)
     favoriteMeals: {
-      type: Array,
-      required: false,
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'Recipe',
     },
   },
   {

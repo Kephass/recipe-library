@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { recipeService } from '../api/recipes.service';
 import { useFetch } from '../utils/hooks/useFetch';
+import { MealPreview } from '../Components/Meal';
+import { Container, Heading, Stack, Text } from '@chakra-ui/react';
 
 function ScreenRecipes() {
   const navigate = useNavigate();
@@ -23,35 +25,30 @@ function ScreenRecipes() {
   }
 
   const renderedRecipeResults = (
-    <ul>
+    <Stack
+      justifyContent="space-around"
+      spacing={4}
+      direction="row"
+      align="center"
+      flexWrap="wrap"
+      gap={2}
+      mt={20}
+    >
       {data.map((recipe) => {
-        return (
-          <li key={recipe._id}>
-            <h2>{recipe.title}</h2>
-            <img src={recipe.image} alt={recipe.title} />
-            <div>Prep Time: {recipe.timeToPrepare} mins</div>
-            <div>Difficult: {recipe.difficulty}</div>
-            <div>Rating: {recipe.rating}</div>
-          </li>
-        );
+        return <MealPreview key={recipe._id} recipe={recipe} />;
       })}
-    </ul>
+    </Stack>
   );
 
   return (
-    <div>
-      <div className="recipes mb-9  text-center">
-        <h1>Here are some recipes</h1>
-        <p>They are being fetched from MongoDB on localhost:5000!</p>
-        {data && renderedRecipeResults}
-        <button
-          className="bg-green-500 rounded p-2"
-          onClick={() => navigate('/')}
-        >
-          Back Home
-        </button>
-      </div>
-    </div>
+    <Container maxW="container.xl" centerContent minH="93vh" bg="primary">
+      <Heading as="h1" color="testYellow" my={4} textDecoration="underline">
+        Here are some Recipes!
+      </Heading>
+      <Text>They are being fetched from MongoDB on localhost:5000!</Text>
+
+      {data && renderedRecipeResults}
+    </Container>
   );
 }
 

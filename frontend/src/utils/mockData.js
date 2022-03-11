@@ -24,8 +24,8 @@ export const meal = {
   title: 'Placeholder Burger & Fries',
   image:
     'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
-  difficulty: 3,
-  timeToPrepare: 40,
+  difficulty: 2.4,
+  readyInMinutes: 35,
   rating: 3.8,
 };
 
@@ -36,8 +36,8 @@ export const results = [
     title: 'Placeholder Cheese Pizza',
     image:
       'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    difficulty: 3,
-    timeToPrepare: 40,
+    difficulty: 3.7,
+    readyInMinutes: 55,
     rating: 4.8,
   },
   {
@@ -46,7 +46,7 @@ export const results = [
     image:
       'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
     difficulty: 3,
-    timeToPrepare: 40,
+    readyInMinutes: 40,
     rating: 4.5,
   },
   {
@@ -54,8 +54,8 @@ export const results = [
     title: 'Placeholder Some Fancy Icecream Thingy',
     image:
       'https://images.unsplash.com/photo-1598268121084-c8f7126e0cef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    difficulty: 3,
-    timeToPrepare: 40,
+    difficulty: 4.2,
+    readyInMinutes: 40,
     rating: 4.1,
   },
   {
@@ -63,8 +63,8 @@ export const results = [
     title: 'Placeholder Gross Healthy Salad',
     image:
       'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    difficulty: 3,
-    timeToPrepare: 40,
+    difficulty: 1.1,
+    readyInMinutes: 10,
     rating: 1.2,
   },
 ];

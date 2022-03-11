@@ -13,7 +13,7 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route GET /api/users/:id
 // @access Private
 const getUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id).populate('favoriteMeals');
   res.status(200).json(user);
 });
 

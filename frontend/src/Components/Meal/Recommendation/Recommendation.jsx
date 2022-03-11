@@ -30,11 +30,14 @@ export function MealRecommendation() {
     <Container maxW="container.xl" centerContent>
       <Link to={`/recipes/${data.results[0].id}`}>
         <Flex
+          border={'2px solid gray'}
+          boxShadow={'xl'}
           background={`linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35)), url('${data.results[0].image}')`}
           p={8}
-          w={500}
+          w={600}
           h={200}
           backgroundSize="cover"
+          backgroundPosition={'center'}
           borderRadius={20}
           flexDir="column"
           lineHeight={1}
@@ -53,7 +56,7 @@ export function MealRecommendation() {
                 <ClockCircleOutlined style={{ color: 'black' }} />
               </Box>
               <Text fontSize={24} color="testYellow">
-                {data.results[0].timeToPrepare}
+                {data.results[0].readyInMinutes || '30 min'}
               </Text>
             </Flex>
             <Flex align="center" justify="center" gap={2}>
@@ -61,7 +64,7 @@ export function MealRecommendation() {
                 <FireOutlined style={{ color: 'black' }} />
               </Box>
               <Text fontSize={24} color="testYellow">
-                {data.results[0].difficulty}
+                {data.results[0].difficulty || 'Easy lvl'}
               </Text>
             </Flex>
           </Flex>

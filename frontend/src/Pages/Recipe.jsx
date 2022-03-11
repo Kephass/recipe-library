@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
+  Button,
   Box,
   Container,
   Flex,
@@ -10,59 +11,91 @@ import {
   Link,
   Stack,
   Text,
+  ButtonGroup,
 } from '@chakra-ui/react';
+import { ClockCircleFilled, FireFilled, StarFilled } from '@ant-design/icons';
+import { recipeService } from '../api/recipes.service';
 import { getRecipeById } from '../api/recipeSearch';
+import useFetch from '../utils/hooks/useFetch';
 
 function ScreenRecipe() {
   const { recipeId } = useParams();
-  const [recipe, setRecipe] = useState({});
+  const [recipe, loading, error] = useFetch(recipeService.getById(recipeId));
 
-  const getRecipe = async () => {
-    if (recipeId == 1) return;
+  // const [recipe, setRecipe] = useState();
+  const [currentView, setCurrentView] = useState('ingredients');
 
-    const fetchedRecipe = await getRecipeById(recipeId);
-    setRecipe(fetchedRecipe);
-  };
+  // const getRecipe = async () => {
+  //   const fetchedRecipe = await getRecipeById(recipeId);
+  //   setRecipe(fetchedRecipe);
+  // };
 
   useEffect(() => {
-    getRecipe();
-  }, []);
+    // getRecipe();
+    console.log('Recipe', recipe);
+  }, [recipeId]);
 
   if (!recipe) return <div>Fetching recipe...</div>;
-  console.log(recipe);
 
   return (
     <Container
-      maxW='container.xl'
-      minH='93vh'
+      maxW="container.xl"
+      minH="93vh"
       py={6}
       centerContent
-      bgColor='primary'
+      bgColor="primary"
     >
       <Image src={recipe.image} />
-      <Heading as='h1'>{recipe.title}</Heading>
+      <Heading as="h1">{recipe.title}</Heading>
       <HStack>
         <Box>
-          <Text>**</Text>
-          <Text>Time: {recipe.readyInMinutes}</Text>
+          <ClockCircleFilled style={{ color: '#ffc20d' }} />
+          <Text>{recipe.readyInMinutes} MInute</Text>
           <Text>Cooking</Text>
         </Box>
         <Box>
-          <Text>**</Text>
+          <StarFilled style={{ color: '#ffc20d' }} />
           <Text>4.08</Text>
           <Text>Rating</Text>
         </Box>
         <Box>
-          <Text>**</Text>
+          <FireFilled style={{ color: '#ffc20d' }} />
           <Text>Easy level</Text>
-          <Text>Recipes</Text>
+          <Text>Difficulty</Text>
         </Box>
       </HStack>
 
-      <Text>{recipe.summary}</Text>
+      <ButtonGroup colorScheme="yellow" spacing="6">
+        <Button
+          isActive={currentView === 'instructions'}
+          onClick={() => setCurrentView('instructions')}
+        >
+          Instructions
+        </Button>
+        <Button
+          isActive={currentView === 'ingredients'}
+          onClick={() => setCurrentView('ingredients')}
+        >
+          Ingredients
+        </Button>
+      </ButtonGroup>
+
+      <Text dangerouslySetInnerHTML={{ __html: recipe.summary }}></Text>
       <Link href={recipe.sourceUrl} isExternal>
         Read Original Article
       </Link>
+
+      {currentView === 'instructions' && (
+        <Text dangerouslySetInnerHTML={{ __html: recipe.instructions }}></Text>
+      )}
+
+      {currentView === 'ingredients' && (
+        <ul>
+          {recipe.extendedIngredients.map((ingredient) => (
+            <li key={ingredient.id}>{ingredient.original}</li>
+          ))}
+        </ul>
+      )}
     </Container>
   );
 }

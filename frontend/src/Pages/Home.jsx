@@ -6,17 +6,29 @@ import { users } from '../utils/mockData';
 import axios from 'axios';
 
 function ScreenHome() {
-  // TODO: Fetch this user from our database!
   const [user, setUser] = useState();
 
   useEffect(() => {
-    const getUser = async () => {
-      const fetchedUsers = await axios.get('http://localhost:5000/api/users');
-      setUser(fetchedUsers.data[0]);
-      console.log(fetchedUsers);
+    const fetchUserFromDatabase = async () => {
+      // Fetch user from our DB! For now, just the first user found
+      const fetchedData = await axios.get('http://localhost:5000/api/users');
+      const fetchedUser = fetchedData.data[0];
+
+      localStorage.setItem('user', JSON.stringify(fetchedUser));
+      setUser(fetchedUser);
+      console.log(fetchedUser);
     };
 
-    getUser();
+    const localUser = localStorage.getItem('user');
+    if (localUser) {
+      console.log('Found local user data -- using that for user information!');
+      setUser(JSON.parse(localUser));
+    } else {
+      console.log(
+        "Didn't find local user data -- attempting to fetch user from database!"
+      );
+      fetchUserFromDatabase();
+    }
   }, []);
 
   return (

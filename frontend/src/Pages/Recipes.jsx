@@ -1,44 +1,27 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Container, Heading, Stack, Text } from '@chakra-ui/react';
+import { MealPreview, MealPreviewSkeleton } from '../Components/Meal';
 import { recipeService } from '../api/recipes.service';
 import { useFetch } from '../utils/hooks/useFetch';
-import { MealPreview } from '../Components/Meal';
-import { Container, Heading, Stack, Text } from '@chakra-ui/react';
 
 function ScreenRecipes() {
-  const navigate = useNavigate();
-
-  const [data, loading, error] = useFetch(recipeService.getFromServer());
-
-  useEffect(() => {}, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const [recipes, isLoading, error] = useFetch(recipeService.getFromServer());
 
   if (error) {
-    return <div>Error fetching from MongoDB</div>;
+    return (
+      <Container maxW="container.xl" centerContent minH="93vh" bg="primary">
+        <Text>Error fetching Recipes from our server's database!</Text>
+      </Container>
+    );
   }
 
-  if (!data) {
-    return <div>No fetched data to show</div>;
-  }
-
-  const renderedRecipeResults = (
-    <Stack
-      justifyContent="space-around"
-      spacing={4}
-      direction="row"
-      align="center"
-      flexWrap="wrap"
-      gap={2}
-      mt={20}
-    >
-      {data.map((recipe) => {
-        return <MealPreview key={recipe._id} recipe={recipe} />;
-      })}
-    </Stack>
-  );
+  // TODO: Temporary, sloppy way of testing Skeletons
+  const tempArray = [
+    { _id: 't1', title: 'Loading Meal', difficulty: 3, rating: 3 },
+    { _id: 't2', title: 'Loading Meal', difficulty: 3, rating: 3 },
+    { _id: 't3', title: 'Loading Meal', difficulty: 3, rating: 3 },
+    { _id: 't4', title: 'Loading Meal', difficulty: 3, rating: 3 },
+  ];
 
   return (
     <Container maxW="container.xl" centerContent minH="93vh" bg="primary">
@@ -46,8 +29,36 @@ function ScreenRecipes() {
         Here are some Recipes!
       </Heading>
       <Text>They are being fetched from MongoDB on localhost:5000!</Text>
-
-      {data && renderedRecipeResults}
+      <Stack
+        justifyContent="space-around"
+        spacing={4}
+        direction="row"
+        align="center"
+        flexWrap="wrap"
+        gap={2}
+        mt={20}
+      >
+        {isLoading &&
+          tempArray.map((recipe) => {
+            return (
+              <MealPreviewSkeleton
+                key={recipe._id}
+                recipe={recipe}
+                isLoading={true}
+              />
+            );
+          })}
+        {recipes &&
+          recipes.map((recipe) => {
+            return (
+              <MealPreview
+                key={recipe._id}
+                recipe={recipe}
+                isLoading={isLoading}
+              />
+            );
+          })}
+      </Stack>
     </Container>
   );
 }

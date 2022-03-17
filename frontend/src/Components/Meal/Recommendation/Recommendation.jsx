@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Flex, Text } from '@chakra-ui/react';
+import { Box, Container, Flex, Spinner, Stack, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ClockCircleOutlined, FireOutlined } from '@ant-design/icons';
 import currentMealTime from '../../../utils/currentMealTime';
@@ -16,16 +16,27 @@ export function MealRecommendation() {
     recipeService.getRecipesByParams({ type: mealType, number: 1 })
   );
 
-  console.log('DATA', data);
-
   if (error) {
     // This need to go in some global Error handler.
     console.log(error);
-    return <p>Something went wrong!</p>;
+    return <p>Failed to fetch recommendation!</p>;
   }
 
-  //This should be returning UI component with some spiner.
-  if (loading) return <p>Loading...</p>;
+  //This should be returning UI component with some spinner.
+  if (loading)
+    return (
+      <Stack direction="row">
+        <Text>Finding recommendation tailored to you! </Text>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="lg"
+        />
+      </Stack>
+    );
+
   return (
     <Container maxW="container.xl" centerContent>
       <Link to={`/recipes/${data.results[0].id}`}>

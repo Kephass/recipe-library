@@ -22,9 +22,9 @@ function MealPreview({ recipe }) {
         direction="column"
         alignItems="center"
         flexWrap="wrap"
-        gap={2}
+        gap={1}
         mt={20}
-        padding={'0 1rem 1rem 1rem'}
+        padding={'0 2rem 2rem 2rem'}
         backgroundColor="secondary"
         borderRadius="3xl"
         boxShadow="xl"
@@ -38,24 +38,34 @@ function MealPreview({ recipe }) {
           boxSize="120px"
           fit="cover"
           align="center center"
+          border={'2px solid'}
+          borderColor="testYellow"
           borderRadius="full"
-          mx="auto"
           mt="-60px"
         />
 
-        <Text
-          color="white"
-          fontWeight="bold"
-          textAlign="center"
-          // Limit the Title to one line
-          maxWidth="90%"
-          whiteSpace="nowrap"
-          overflow="hidden"
-          textOverflow="ellipsis"
+        <Flex
+          flexDir="column"
+          justifyContent="center"
+          lineHeight="1.2"
+          height="45px"
         >
-          {recipe.title}
-        </Text>
-        <Box color="testYellow">
+          <Text
+            color="white"
+            fontWeight="bold"
+            textAlign="center"
+            // Limit the Title to one line
+            // maxWidth="90%"
+            // whiteSpace="nowrap"
+            // overflow="hidden"
+            // textOverflow="ellipsis"
+            noOfLines="2"
+          >
+            {recipe.title}
+          </Text>
+        </Flex>
+
+        <Box color="testYellow" lineHeight="1">
           {/* Calculate how many Star icons we need, based on the difficulty */}
           {Array.apply(null, { length: Math.round(recipe.difficulty) }).map(
             (e, index) => (
@@ -63,7 +73,7 @@ function MealPreview({ recipe }) {
             )
           )}
         </Box>
-        <Flex color="textGray">
+        <Flex lineHeight="1" color="textGray">
           <Box>{recipe.readyInMinutes} Min</Box>
           <Box mx="1rem">|</Box>
           <Box>{mealDifficultyToString(recipe.difficulty)} Lvl</Box>

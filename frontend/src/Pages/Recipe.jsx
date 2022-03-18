@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Button,
@@ -9,6 +9,7 @@ import {
   HStack,
   Image,
   Link,
+  Spinner,
   Stack,
   Text,
   ButtonGroup,
@@ -26,48 +27,92 @@ function ScreenRecipe() {
   // useFetch(recipeService.getById(recipeId));
   const [currentView, setCurrentView] = useState('ingredients');
 
-  if (!recipe) return <div>Fetching recipe...</div>;
+  if (isLoading)
+    return (
+      <Container
+        maxW="container.xl"
+        minH="93vh"
+        py={10}
+        centerContent
+        bgColor="primary"
+      >
+        <Stack direction="row">
+          <Text>Fetching Recipe Data</Text>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="lg"
+          />
+        </Stack>
+      </Container>
+    );
 
   return (
     <Container
       maxW="container.xl"
       minH="93vh"
-      py={6}
+      py={10}
       centerContent
       bgColor="primary"
     >
-      <Image src={recipe.image} maxH="250px" />
+      <Image src={recipe.image} maxH="250px" borderRadius="lg" />
       <Heading as="h1" m="4rem 1rem 3rem 1rem">
         {recipe.title}
       </Heading>
       <HStack gap="5rem" mb="3rem">
-        <Stack justifyContent="center" alignItems="center">
+        <Stack
+          lineHeight="1"
+          justifyContent="center"
+          alignItems="center"
+          gap="-1rem"
+        >
           <ClockCircleFilled style={{ color: '#ffc20d' }} />
           <Text>{recipe.readyInMinutes} Minute</Text>
           <Text>Cooking</Text>
         </Stack>
-        <Stack justifyContent="center" alignItems="center">
+        <Stack lineHeight="1" justifyContent="center" alignItems="center">
           <StarFilled style={{ color: '#ffc20d' }} />
           <Text>4.08</Text>
           <Text>Rating</Text>
         </Stack>
-        <Stack justifyContent="center" alignItems="center">
+        <Stack lineHeight="1" justifyContent="center" alignItems="center">
           <FireFilled style={{ color: '#ffc20d' }} />
           <Text>Easy level</Text>
           <Text>Difficulty</Text>
         </Stack>
       </HStack>
 
-      <ButtonGroup colorScheme="yellow" spacing="3rem" mb="2rem">
+      <ButtonGroup
+        backgroundColor="#1a1a1a"
+        borderRadius="full"
+        padding="0.5rem"
+        // colorScheme="yellow"
+        spacing="3rem"
+        mb="2rem"
+      >
         <Button
           isActive={currentView === 'instructions'}
           onClick={() => setCurrentView('instructions')}
+          borderRadius="full"
+          color="testYellow"
+          bgColor="transparent"
+          _hover={{ backgroundColor: 'secondary' }}
+          _active={{ backgroundColor: 'secondary' }}
+          padding="0.5rem 3rem"
         >
           Instructions
         </Button>
         <Button
           isActive={currentView === 'ingredients'}
           onClick={() => setCurrentView('ingredients')}
+          borderRadius="full"
+          color="testYellow"
+          bgColor="transparent"
+          _hover={{ backgroundColor: 'secondary' }}
+          _active={{ backgroundColor: 'secondary' }}
+          padding="0.5rem 3rem"
         >
           Ingredients
         </Button>

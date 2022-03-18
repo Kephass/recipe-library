@@ -30,12 +30,14 @@ function MealPreview({ recipe }) {
         boxShadow="xl"
         width="260px"
         _hover={{ transform: 'scale(1.05)' }}
-        transition={'transform 0.5s ease-in-out'}
+        transition={'transform 0.2s ease-in-out'}
       >
         <Image
           src={recipe.image}
           alt={recipe.title}
           boxSize="120px"
+          fit="cover"
+          align="center center"
           borderRadius="full"
           mx="auto"
           mt="-60px"

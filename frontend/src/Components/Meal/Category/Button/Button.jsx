@@ -11,11 +11,12 @@ function CategoryButton({
 
   return (
     <Button
+      width="150px"
       bg={isSelected ? 'testYellow' : 'secondary'}
       color={isSelected ? 'secondary' : 'white'}
-      letterSpacing='1px'
-      borderRadius='xl'
-      fontSize='12px'
+      letterSpacing="1px"
+      borderRadius="xl"
+      fontSize="12px"
       _hover={{
         color: 'secondary',
         bg: 'testYellow',
@@ -28,7 +29,7 @@ function CategoryButton({
       }}
       onClick={() => onClickHandler(id)}
     >
-      <Text fontSize='18px'>{icon}</Text>
+      <Text fontSize="18px">{icon}</Text>
       <Text ml={3}>{text.toUpperCase()}</Text>
     </Button>
   );

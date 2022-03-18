@@ -1,5 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Heading, Flex, Link, Spacer, Stack } from '@chakra-ui/react';
+import {
+  Heading,
+  Flex,
+  Link,
+  Spacer,
+  Stack,
+  VStack,
+  HStack,
+} from '@chakra-ui/react';
 import { Link as ReactLink } from 'react-router-dom';
 import CategoryButton from './Button/Button';
 import { getRecipe } from '../../../api/recipeSearch';
@@ -66,16 +74,15 @@ function MealCategories() {
             setCategoryCount(CATEGORIES.length);
           }}
         >
-          See all
+          See All
         </Link>
       </Flex>
-      <Stack
-        spacing={4}
+      <Flex
         direction="row"
         flexWrap="wrap"
         justifyContent="center"
-        gap={2}
-        mb="5rem"
+        gap={6}
+        mb="1rem"
       >
         {CATEGORIES.slice(0, categoryCount).map((category) => (
           <CategoryButton
@@ -85,17 +92,17 @@ function MealCategories() {
             category={category}
           />
         ))}
-      </Stack>
-      <Stack
+      </Flex>
+      <Flex
         justifyContent="space-around"
-        spacing={4}
         direction="row"
         align="center"
         flexWrap="wrap"
         gap={2}
+        pb="2rem"
       >
         {renderedSuggestionList()}
-      </Stack>
+      </Flex>
     </Fragment>
   );
 }

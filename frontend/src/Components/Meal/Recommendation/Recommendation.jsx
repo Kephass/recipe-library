@@ -41,7 +41,8 @@ export function MealRecommendation() {
     <Container maxW="container.xl" centerContent>
       <Link to={`/recipes/${data.results[0].id}`}>
         <Flex
-          border={'2px solid gray'}
+          border={'5px solid'}
+          borderColor="secondary"
           boxShadow={'xl'}
           background={`linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35)), url('${data.results[0].image}')`}
           p={8}
@@ -55,10 +56,10 @@ export function MealRecommendation() {
           color="white"
           justify="space-around"
         >
-          <Text color="textFaint" fontWeight="bold">
+          <Text fontSize="1.2rem" color="textFaint" fontWeight="bold">
             {recommendationMessage}
           </Text>
-          <Text fontSize={24} color="testYellow">
+          <Text fontSize="1.5rem" fontWeight="bold" color="testYellow">
             {data.results[0].title}
           </Text>
           <Flex gap={4}>
@@ -66,7 +67,7 @@ export function MealRecommendation() {
               <Box bg="testYellow" p={2} borderRadius="md">
                 <ClockCircleOutlined style={{ color: 'black' }} />
               </Box>
-              <Text fontSize={24} color="testYellow">
+              <Text fontSize="1.2rem" color="testYellow">
                 {data.results[0].readyInMinutes || '30 min'}
               </Text>
             </Flex>
@@ -74,7 +75,7 @@ export function MealRecommendation() {
               <Box bg="testYellow" p={2} borderRadius="md">
                 <FireOutlined style={{ color: 'black' }} />
               </Box>
-              <Text fontSize={24} color="testYellow">
+              <Text fontSize="1.2rem" color="testYellow">
                 {data.results[0].difficulty || 'Easy lvl'}
               </Text>
             </Flex>
